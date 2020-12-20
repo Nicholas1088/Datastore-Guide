@@ -111,7 +111,8 @@ end
 
 local Coins = Instance.new("IntValue", leaderstats) -- This works the same with player and it's deprecated so using it is not the best option.
 
-Deprecated means that it should not be used or it's not recommended to be used in programming.
--- Now that is our data store done!
+-- Deprecated means that it should not be used or it's not recommended to be used in programming.
+
+-- Now our data store is complete!
 
 ```
