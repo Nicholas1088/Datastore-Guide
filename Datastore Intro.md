@@ -106,6 +106,12 @@ game:BindToClose(function()
 	end
 end
 
+
+-- Almost forgot, you know that , player we were talking about earlier? Yeah you don't want to use that becuase it is deprecated, it would look something like this 
+
+local Coins = Instance.new("IntValue", leaderstats) -- This works the same with player and it's deprecated so using it is not the best option.
+
+Deprecated means that it should not be used or it's not recommended to be used in programming.
 -- Now that is our data store done!
 
 ```
