@@ -2,7 +2,7 @@
 
 Hello everyone, today I will be going over the basic foundation of Datastores along with some key information you should know. We’ll break this down into a couple of sections and I’ll let you know what each and everything does. Let's get to work!!! 
 
-Before we do anything, we gotta make our Datastore Service!
+Before we do anything, we gotta get Datastore Service.
 		
 ```lua
 local DatastoreService = game:GetService("DataStoreService")
