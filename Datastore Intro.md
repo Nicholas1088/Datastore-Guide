@@ -1,9 +1,9 @@
-## What is Lua? Lua is a basic coding language implemented into roblox, it made roblox and you can use it for free at Roblox Studio! It's to teach everyone how to code in a different language maybe they're never seen before, they also let you access their API through Datastores, (not really "access" just allow you to save data to it!)
+## What is Lua? Lua is a basic coding language implemented into roblox, it made roblox and you can use it for free at Roblox Studio! It's to teach everyone how to code in a different language maybe they're never seen before, they also let you save data through their API through Datastores.
 
-## Hello everyone, today i’ll be going over the basic foundation of Datastores along with some key notes you should know about them. We’ll break this down into a couple of sections and i’ll let you know what each and everything does except for the basic starting stuff such as game.Players.PlayerAdded etc. Anyway lets get to work!!! 
+## Hello everyone, today I’ll be going over the basic foundation of Datastores along with some key notes you should know about them. We’ll break this down into a couple of sections and I’ll let you know what each and everything does except for the basic starting stuff such as game.Players.PlayerAdded etc. Anyway, lets get to work!!! 
 
 
-## Alrighty, so first off you’re going to want to start off with an event such as PlayerAdded and PlayerRemoving so lets do that below (full code will be at the bottom i’ll be piecing them together and forming them as we go so make sure to read the bottom along with the notes for each and everything.) First off we gotta make our Datastore Service!
+## Alrighty, so first off you’re going to want to start off with an event known as PlayerAdded and PlayerRemoving lets do that below (full code will be at the bottom i’ll be piecing them together and forming them as we go so make sure to read the bottom along with the notes for each and everything.) First off, we gotta make our Datastore Service!
 		
 ```lua
 local DatastoreService = game:GetService("DataStoreService")
@@ -45,7 +45,8 @@ game.Players.PlayerAdded:Connect(function(player)
 
 	local data -- Just do this for the data because we need to be able to call it later (calling is when you make a variable with no = and then use it later such as data = DS:GetAsync(key)
 
-	-- Now we need a key, a key in LUA is just a foundation of the game trying to find something or anything relative to our int value, such as Coins we would do for a key "coins_" now this is needed because a key is a specific way of storing data. 
+	-- 	-- Now we need a key, a key in LUA is a process of trying to find something or anything relative to our int value, such as Coins we would do for a key "coins_" now this is needed because a key is a specific way of storing data. 
+
 
 	local key = "coins_"..player.UserId -- This is our key, the key is your intValue name so if you had Diamonds you would use "diamonds_"..player.UserId, the player.UserId is the player's specific id because if they change their name their data could get lost and we don't want that.
 
@@ -97,17 +98,17 @@ game:BindToClose(function()
 		-- Now we can save our data with DS
 
 		local success, errorMes = pcall(function()
-			DS:SetAsync(key, player.leaderstats.Coins.Value) -- Same thing as above with the Player Removing.
+			DS:SetAsync(key, v.leaderstats.Coins.Value) -- Same thing as above with the Player Removing.
 		end)
 
 		if success then
 			print("Saved on close") -- You probably wont see this print
 		else
 			print(errorMes) -- Same with this.
+			
 		end
 	end
-end
-
+end)
 
 -- Almost forgot, you know that , player we were talking about earlier? Yeah you don't want to use that becuase it is deprecated, it would look something like this 
 
@@ -117,4 +118,74 @@ local Coins = Instance.new("IntValue", leaderstats) -- This works the same with 
 
 -- Now our data store is complete!
 
+```
+
+
+```lua
+
+-- Full Code Below:
+
+local DatastoreService = game:GetService("DataStoreService")
+local DS = DatastoreService:GetDataStore("MyData") 
+
+game.Players.PlayerAdded:Connect(function(player)
+	local leaderstats = Instance.new("Folder") 
+	leaderstats.Parent = player 
+	leaderstats.Name = "leaderstats" 
+
+	local Coins = Instance.new("IntValue")
+
+	Coins.Parent = leaderstats
+	Coins.Name = "Coins	"
+	Coins.Value = 0 
+
+	local data 
+
+	local key = "coins_"..player.UserId 
+
+	
+	local success, errorMessage = pcall(function()
+	
+		data = DS:GetAsync(key)
+	end)
+
+	if success then
+		data = Coins.Value
+		print("Got Value") 
+	else
+		print(errorMessage)
+	end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+
+	local key = "coins_"..player.UserId
+
+	local success, errorMessage = pcall(function()
+		DS:SetAsync(key, player.leaderstats.Coins.Value) 
+	end)
+
+	if success then
+		print("Saved!")
+	else
+		print(errorMessage)
+	end
+end)
+
+
+game:BindToClose(function() 
+	for i, v in pairs(game.Players:GetPlayer()) do
+		local key = "coins_"..v.UserId 
+		
+		local success, errorMes = pcall(function()
+			DS:SetAsync(key, v.leaderstats.Coins.Value) 
+		end)
+
+		if success then
+			print("Saved on close") 
+		else
+			print(errorMes) 
+		end
+	end
+end)
 ```
