@@ -6,7 +6,7 @@ Before we do anything, we gotta get Datastore Service.
 		
 ```lua
 local DatastoreService = game:GetService("DataStoreService")
-local DS = DatastoreService:GetDataStore("MyData") --Name this anything. Even with spaces.
+local DS = DatastoreService:GetDataStore("MyData") --Name this anything. Even with spaces. GetDataStore is called later for Saving and getting data, we use specifc string name ("MyData") to name the Datastore, you can change this to wipe everyones data.
 ```
 First off, you’re going to want to start off with an event known as PlayerAdded and PlayerRemoving. Let's do that below. 
 
