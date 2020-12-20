@@ -3,7 +3,7 @@
 ## Hello everyone, today i’ll be going over the basic foundation of Datastores along with some key notes you should know about them. We’ll break this down into a couple of sections and i’ll let you know what each and everything does except for the basic starting stuff such as game.Players.PlayerAdded etc. Anyway lets get to work!!! 
 
 
-## Alrighty, so first off you’re going to want to start off with an event such as PlayerAdded and PlayerRemoving so lets do that below (full code will be at the bottom i’ll be piecing them together and forming them as we go so make sure to read the bottom along with the notes for each and everything.) First off we gotta make our DataStore service!
+## Alrighty, so first off you’re going to want to start off with an event such as PlayerAdded and PlayerRemoving so lets do that below (full code will be at the bottom i’ll be piecing them together and forming them as we go so make sure to read the bottom along with the notes for each and everything.) First off we gotta make our Datastore Service!
 		
 ```lua
 local DatastoreService = game:GetService("DataStoreService")
@@ -12,8 +12,9 @@ local DS = DatastoreService:GetDataStore("MyData") --Name this anything. Even wi
 
 ```lua
 game.Players.PlayerAdded:Connect(function(player)
-```
+
 end)
+```
 
 ## We can copy and paste the player added and change some stuff around to say Removing so lets do that.
 ```lua
@@ -25,6 +26,7 @@ end)
 ## After we have our events we’re gonna start with a basic rundown of leaderstats. You might know what these are already and that’s amazing!
 
 ## So after we’ve gotten our Events what you wanna do is make a leaderstats folder and value inside of that player ADDED not REMOVING.
+
 ```lua
 game.Players.PlayerAdded:Connect(function(player)
 	local leaderstats = Instance.new(“Folder”) 
@@ -111,7 +113,7 @@ end
 
 local Coins = Instance.new("IntValue", leaderstats) -- This works the same with player and it's deprecated so using it is not the best option.
 
--- Deprecated means that it should not be used or it's not recommended to be used in programming.
+-- Deprecated means that it should not be used or it's not recommend to be used in programming.
 
 -- Now our data store is complete!
 
