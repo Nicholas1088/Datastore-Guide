@@ -174,18 +174,17 @@ end)
 
 
 game:BindToClose(function() 
-	for i, v in pairs(game.Players:GetPlayer()) do
+	for i, v in pairs(game.Players:GetPlayers()) do
 		local key = "coins_"..v.UserId 
 		
 		local success, errorMes = pcall(function()
-			DS:SetAsync(key, v.leaderstats.Coins.Value) 
+		    DS:SetAsync(key, v.leaderstats.Coins.Value) 
 		end)
-
-		if success then
-			print("Saved on close") 
-		else
-			print(errorMes) 
-		end
-	end
+         if success then
+	     print("Saved on close") 
+	 else
+             print(errorMes) 
+	 end
+     end
 end)
 ```
