@@ -5,10 +5,10 @@
 
 ## Alrighty, so first off you’re going to want to start off with an event such as PlayerAdded and PlayerRemoving so lets do that below (full code will be at the bottom i’ll be piecing them together and forming them as we go so make sure to read the bottom along with the notes for each and everything.) First off we gotta make our DataStore service!
 		
-
+```lua
 local DatastoreService = game:GetService("DataStoreService")
 local DS = DatastoreService:GetDataStore("MyData") --Name this anything. Even with spaces.
-
+```
 
 ```lua
 game.Players.PlayerAdded:Connect(function(player)
